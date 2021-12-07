@@ -1,7 +1,14 @@
 var btntranslate= document.querySelector('#btn-translate');
 var txtarea=document.querySelector('#txt-area');
 var output=document.querySelector('#output');
-
-btntranslate.addEventListener("click",function clickEventHandler(){
-    output.innerText="Hii"
-});
+var input=txtarea.value;
+var baseURL="https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json";
+function makeURL(input){
+    console.log(baseURL+"?"+"text="+"input");
+    return baseURL+"?"+"text="+"input";
+}
+btntranslate.addEventListener("click",function clickHandler(){
+    fetch(makeURL(input))
+      .then(response => response.json())
+      .then(json => console.log(json.contents.translated))
+})
